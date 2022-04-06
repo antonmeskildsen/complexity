@@ -6,7 +6,7 @@ description = ""
 authors = ["Anton Mølbjerg Eskildsen <antonmeskildsen@me.com>"]
 
 [tool.poetry.dependencies]
-python = ">=3.8,<3.11"
+#python = "<empty>"
 scikit-learn = "^1.0.2"
 numpy = "^1.22.3"
 altair = "^4.2.0"
