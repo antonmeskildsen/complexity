@@ -12,10 +12,7 @@ from sklearn.preprocessing import StandardScaler, PolynomialFeatures
 from sklearn.pipeline import make_pipeline
 from sklearn.datasets import fetch_california_housing, load_diabetes
 
-import sympy
-from sympy import lambdify, symbols
-from sympy.parsing.sympy_parser import parse_expr
-
+st.set_page_config(layout="wide")
 
 # @st.cache
 def gen_s_data(nf, n, domain_min, domain_max, margin, fun_type):
