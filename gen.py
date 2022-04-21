@@ -47,7 +47,7 @@ def gen_split_labels(x, n_split):
 
 def gen_point_split_dataframe(x, y, n_split):
     lbs = gen_split_labels(x, n_split)
-    return pd.DataFrame(np.stack([x, y, lbs]).T, columns=['x', 'y', 'num'])
+    return pd.DataFrame(np.stack([x, y, lbs]).T, columns=['x', 'y', 'experiment'])
 
 
 def multi_model_fit(model, x, y, n_split: int):
@@ -77,9 +77,11 @@ def multi_model_eval(models, xs):
 
 
 def multi_model_eval_dataframe(xs, yss):
-    yp = pd.DataFrame(np.array(yss).T, columns=range(len(yss))).melt(var_name='num',
-                                                                     value_name='y')
+    yp = pd.DataFrame(np.array(yss).T, columns=range(len(yss))).melt(
+        var_name='experiment',
+        value_name='y')
     xp = pd.DataFrame(np.array(np.repeat(xs.reshape(1, -1), 10, 0)).T,
-                      columns=range(10)).melt(var_name='num', value_name='x')
-    comb = yp.reset_index().merge(xp.reset_index(), how='inner', on=['index', 'num'])
+                      columns=range(10)).melt(var_name='experiment', value_name='x')
+    comb = yp.reset_index().merge(xp.reset_index(), how='inner',
+                                  on=['index', 'experiment'])
     return comb
